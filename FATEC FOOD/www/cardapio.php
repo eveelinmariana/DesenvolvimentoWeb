@@ -46,7 +46,7 @@ require_once('filtro.php');
     <div class="text-end" style="width: 99%;">
 
         <button type="button" class="btn btn-link text-saiba " data-bs-toggle="modal" data-bs-target="#modal1">
-            <?=isset($_SESSION['carrinho'])?'Carrinho':''?> 
+            <?= isset($_SESSION['carrinho']) ? 'Carrinho' : '' ?>
         </button>
     </div>
 
@@ -102,45 +102,48 @@ require_once('filtro.php');
         <hr>
 
 
-        <?php while ($data = mysqli_fetch_assoc($result)) {
-            //print_r($data);
+        <?php
+        if ($result) {
+            while ($data = mysqli_fetch_assoc($result)) {
+                //print_r($data);
         ?>
-            <br />
-            <div class="card m-2 card-produto" style="height: 390px; ">
-                <?php
-                if ($data['promo'] > 0) {
-                    $preco =  $data['preco'] - ($data['preco']*$data['desconto']/100);
-                } 
-                ?>
-                <form action="carrinho.php" method="post">
-                    <input type="hidden" name="cod" value="<?= $data['codigo'] ?>">
-                    <input type="hidden" name="preco" value="<?= $preco ?>">
-                    <input type="hidden" name="nomeprod" value="<?= $data['nome'] ?>">
-                    <input type="hidden" name="promo" value="<?= $data['promo'] ?>">
-                    <input type="hidden" name="desconto" value="<?= $data['desconto'] ?>">
-                    <strong class="card-text1"><?= $data['nome'] ?> </strong>
-                    <img src="<?= $data['image_url'] ?>" class="img_card2" alt="...">
+                <br />
+                <div class="card m-2 card-produto" style="height: 390px; ">
+                    <?php
+                    if ($data['promo'] > 0) {
+                        $preco =  $data['preco'] - ($data['preco'] * $data['desconto'] / 100);
+                    }
+                    ?>
+                    <form action="carrinho.php" method="post">
+                        <input type="hidden" name="cod" value="<?= $data['codigo'] ?>">
+                        <input type="hidden" name="preco" value="<?= $preco ?>">
+                        <input type="hidden" name="nomeprod" value="<?= $data['nome'] ?>">
+                        <input type="hidden" name="promo" value="<?= $data['promo'] ?>">
+                        <input type="hidden" name="desconto" value="<?= $data['desconto'] ?>">
+                        <strong class="card-text1"><?= $data['nome'] ?> </strong>
+                        <img src="<?= $data['image_url'] ?>" class="img_card2" alt="...">
 
 
 
-                    <div class="text-descr"><?= substr($data['descricao'], 0, 40) ?></div>
-                    <div class="cor-preco">
+                        <div class="text-descr"><?= substr($data['descricao'], 0, 40) ?></div>
+                        <div class="cor-preco">
 
-                        R$ <?= number_format($data['preco'], 2, ',', '.') ?>
+                            R$ <?= number_format($data['preco'], 2, ',', '.') ?>
 
-                        <span class="cor-promo"> <?= $data['promo'] > 0 ? ' &nbsp;Promoção ' : '' ?></span>
+                            <span class="cor-promo"> <?= $data['promo'] > 0 ? ' &nbsp;Promoção ' : '' ?></span>
 
-                        
-                        <?= $data['promo'] > 0 ? 'R$ '. number_format($preco, 2, ',', '.')  : '' ?>
-                    </div>
-                    <div style="margin-top: 2px;">
 
-                        Quantidade: <input type="number" name="qtd" class="tm_input" min="1" value="1" /> <br />
-                        <input type="submit" name="addcarrinho" id="addcarrinho" class="btn btn-success" value="Adicionar ao Carrinho" />
-                    </div>
-                </form>
-            </div>
+                            <?= $data['promo'] > 0 ? 'R$ ' . number_format($preco, 2, ',', '.')  : '' ?>
+                        </div>
+                        <div style="margin-top: 2px;">
+
+                            Quantidade: <input type="number" name="qtd" class="tm_input" min="1" value="1" /> <br />
+                            <input type="submit" name="addcarrinho" id="addcarrinho" class="btn btn-success" value="Adicionar ao Carrinho" />
+                        </div>
+                    </form>
+                </div>
         <?php }
+        }
 
         ?>
     </div>
@@ -149,7 +152,7 @@ require_once('filtro.php');
 <?php if (isset($_SESSION['carrinho'])) { ?>
     <section class="container_card">
 
-        <div class="text" style="width: 100%;">
+        <div class="text">
             <h4 class="text-center">ITENS ADICIONADOS</h4>
         </div>
 
@@ -167,25 +170,25 @@ require_once('filtro.php');
             <tbody>
                 <?php
 
-                 // print_r($_SESSION['carrinho']);
+                // print_r($_SESSION['carrinho']);
 
                 foreach ($_SESSION['carrinho'] as $chave => $produto) {
 
                     if ($produto != null) {
-                         //print_r($produto);
+                        //print_r($produto);
                 ?>
                         <tr>
                             <td><?= $produto['nomeprod'] ?></td>
                             <td><?= $produto['qtd'] ?></td>
                             <td>R$ <?= number_format($produto['preco'], 2, ',', '.') ?></td>
-                            <td><?=(isset($produto['desconto']))? $produto['desconto'].'%':'' ?></td>
+                            <td><?= (isset($produto['desconto'])) ? $produto['desconto'] . '%' : '' ?></td>
                             <td>R$ <?= number_format($produto['preco'] * $produto['qtd'], 2, ',', '.') ?></td>
                         </tr>
                 <?php }
                 } ?>
             </tbody>
         </table>
-        <form method="post" action="verificar_pedido.php" class="text-center" style="width: 100%;">
+        <form method="post" action="verificar_pedido.php" class="text-center" style="width: 99%;">
             <input type="submit" class="btn btn-outline-success" value="Finalizar Pedido" />
         </form>
     </section>

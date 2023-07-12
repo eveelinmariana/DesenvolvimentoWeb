@@ -17,19 +17,21 @@ $id = "";
 $row = "";
 //print_r($_SESSION);
 if (isset($_GET['id'])) {
-   $id = $_GET['id'];
-//if ($_SESSION['id'] != "" && $_SESSION['login'] == null) {
-    $id = $_SESSION['id'];
+    $id = $_GET['id'];
+    //if ($_SESSION['id'] != "" && $_SESSION['login'] == null) {
+    //$id = $_SESSION['id'];
     $sql = "select * from cliente where cli_id = $id";
     $result = $conn->query($sql);
 
-    $row = mysqli_fetch_assoc($result);
-   $nome = $row['nome'];
-   $username = $row['nickname'];
-   $whats = $row['whatsapp'];
-   $sexo = $row['sexo'];
-   $email =  $row['email'];
-   $data = $row['dt_nasc'];
+    $row = mysqli_fetch_array($result);
+
+    $nome = $row['nome'];
+    $cpf = $row['cpf'];
+    $username = $row['nickname'];
+    $whats = $row['whatsapp'];
+    $sexo = $row['sexo'];
+    $email =  $row['email'];
+    $data = $row['dt_nasc'];
 }
 
 //print_r($_POST);
@@ -70,9 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
     if (empty($username_err) && empty($password_err)) {
 
-        $sql = "insert into cliente (nome,sexo,dt_nasc, nickname,senha,whatsapp,email) ";
-        $sql .= "values ('$nome','$sexo','$data','$username','$senha','$whats','$email');";
-        echo $sql;
+        $sql = "INSERT INTO cliente (nome, sexo, dt_nasc, nickname, senha, whatsapp, email, cpf) VALUES ('{$nome}','{$sexo}','{$data}','{$username}','{$senha}','{$whats}','{$email}', '{$cpf}');";
+        //echo $sql;
         $result = $conn->query($sql);
 
         if (!$result) {
@@ -82,8 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             header("Location: login.php");
         }
     }
-   
-    
 }
 
 mysqli_close($conn);
@@ -91,17 +90,17 @@ mysqli_close($conn);
 ?>
 
 <form method="post" action="">
-    <?php 
-    if($password_err != ""){?>
-    <br />
-        <span class="alert alert-danger"> 
-            <?=$password_err?>
+    <?php
+    if ($password_err != "") { ?>
+        <br />
+        <span class="alert alert-danger">
+            <?= $password_err ?>
         </span>
-    
+
         <br />
         <br />
-   <?php } ?>
-    <input type="hidden" name="cliId" value="<?=$id?>">
+    <?php } ?>
+    <input type="hidden" name="cliId" value="<?= $id ?>">
     <div class="container-fluid col-11 m-auto">
         <h1>Registre-se</h1>
         <hr>
@@ -109,7 +108,11 @@ mysqli_close($conn);
         <div class="col-4">
             <div class="mb-3">
                 <label for="nomecontato" class="form-label">Nome:</label>
-                <input type="text" name="nome" class="form-control" value="<?= $nome ?>" id="nomecontato" placeholder="Ex. João de Souza">
+                <input type="text" name="nomecontato" class="form-control" value="<?= $nome ?>" id="nomecontato" placeholder="Ex. João de Souza">
+            </div>
+            <div class="mb-3">
+                <label for="cpf" class="form-label">CPF:</label>
+                <input type="text" name="cof" class="form-control" value="<?= $cpf ?>" id="cpf" placeholder="Ex. 000.000.000-00">
             </div>
             <div class="mb-3">
                 <label for="nickname" class="form-label">Username:</label>
@@ -117,11 +120,11 @@ mysqli_close($conn);
             </div>
             <div class="mb-3">
                 <label for="dt_nasc" class="form-label">Data nasc.:</label>
-                <input type="date" name="dt_nasc" class="form-control" value="<?=$data?>" id="dt_nasc" placeholder="Ex. jsouza">
+                <input type="date" name="dt_nasc" class="form-control" value="<?= $data ?>" id="dt_nasc" placeholder="Ex. jsouza">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">E-mail</label>
-                <input type="email" class="form-control" name="email" value="<?=$email?>" id="email" placeholder="name@example.com">
+                <input type="email" class="form-control" name="email" value="<?= $email ?>" id="email" placeholder="name@example.com">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Genero:</label>&nbsp;
@@ -144,11 +147,11 @@ mysqli_close($conn);
             </div>
             <div class="mb-3">
                 <label for="senha" class="form-label">Senha:</label>
-                <input type="password" name="senha" class="form-control" min="6" id="senha" placeholder="Ex. Silva">
+                <input type="password" name="senha" class="form-control" min="6" id="senha" placeholder="******">
             </div>
             <div class="mb-3">
                 <label for="confirm_senha" class="form-label">Confirme a senha:</label>
-                <input type="password" class="form-control" min="6" name="confirm_senha" id="confirm_senha" placeholder="Ex. Silva">
+                <input type="password" class="form-control" min="6" name="confirm_senha" id="confirm_senha" placeholder="******">
             </div>
             <?php if ($id == null) { ?>
                 <button type="submit" class="btn btn-outline-success">Cadastrar</button>
@@ -160,20 +163,20 @@ mysqli_close($conn);
 
 
                     <div class="col-sm">
-                        <a href="endereco.php?id=<?=$id?>">
-                        <button type="button" class="btn btn-outline-primary" >Endereços</button></a>
-                       
-                        <a href="editar.php?id=<?=$id?>">
-                        <button type="button" class="btn btn-outline-danger" >Editar</button></a>
-                       
+                        <a href="endereco.php?id=<?= $id ?>">
+                            <button type="button" class="btn btn-outline-primary">Endereços</button></a>
 
-                       
+                        <a href="editar.php?id=<?= $id ?>">
+                            <button type="button" class="btn btn-outline-danger">Editar</button></a>
+
+
+
                     </div>
 
 
 
                 </div>
-                
+
         </div>
 
         <!-- ------------------------ end code -------------------------------------------- -->

@@ -7,10 +7,6 @@ if (!isset($_SESSION['login_adm']) || $_SESSION['login_adm'] != true) {
     header("Location: login_adm.php");
 }
 
-
-
-
-
 $sql = "SELECT count(p.ped_num) pedidos,c.nome,c.cpf,dt_nasc,nickname,c.email,c.whatsapp,c.cli_id ";
 $sql .= "FROM pedido p inner join cliente c on c.cli_id = p.cliente_cli_id  where p.status <> 3 ";
 $sql .= "group by c.nome,c.cpf,dt_nasc,c.nickname, c.email,c.whatsapp,c.sexo ,c.cli_id ";
@@ -21,22 +17,23 @@ $sql .= "group by c.nome,c.cpf,dt_nasc,c.nickname, c.email,c.whatsapp,c.sexo ,c.
 <br />
 <section class="container-filtro">
 
-    <?php
-    require("./filtro.php");
-    if (isset($_GET['pesquisa'])) {
-        $sql =  buscaLike($_GET['pesquisa']);
-    }
 
-    $result = $conn->query($sql);
-
-
-    ?>
 </section>
 <section class="container_rel">
 
     <div class="col-11 m-auto">
         <h3>Clientes<?= $aviso ?></h3>
         <hr>
+        <?php
+        require("./filtro.php");
+        if (isset($_GET['pesquisa'])) {
+            $sql =  buscaLike($_GET['pesquisa']);
+        }
+
+        $result = $conn->query($sql);
+
+
+        ?>
         <br>
 
 

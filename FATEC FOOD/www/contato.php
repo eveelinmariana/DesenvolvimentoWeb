@@ -1,5 +1,6 @@
-<?php require_once("header.php");?>
+<?php require_once("./header.php");?>
 <?php 
+
 $nome = "";
 $sobrenome = "";
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -9,7 +10,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $email = $_POST['emailcontato'];
     $comentario = $_POST['comentario'];
 
-    require_once("./utils/connetion.php");
 
     $sql = "INSERT INTO contato (nome, sobrenome, telefone, email, motivo_contato) 
                 VALUES ('$nome', '$sobrenome', '$tel', '$email', '$comentario');";

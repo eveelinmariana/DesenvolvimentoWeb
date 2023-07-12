@@ -25,7 +25,7 @@ if (isset($_GET['buscar'])) {
         }
 
         // Preparar a consulta SQL para buscar registros que correspondem à pesquisa
-        $sql = "SELECT * FROM produto WHERE nome LIKE '%$pesquisa%'";
+        $sql = " SELECT * FROM produto WHERE nome LIKE '%$pesquisa%'";
 
         // Executar a consulta SQL  
         $result = mysqli_query($conn, $sql);
@@ -100,11 +100,11 @@ if (isset($_GET['buscar'])) {
             <?php
 
             // Consulta para obter as categorias disponíveis
-            $sql1 = "SELECT tipo_cod, tipo_nome FROM Tipo_produto";
+            $sql1 = "SELECT tipo_cod, tipo_nome FROM tipo_produto";
+            
             $resultado = $conn->query($sql1);
-
             // Exibição das opções da lista suspensa com as categorias
-            if ($resultado->num_rows > 0) {
+            if ($resultado) {
                 while ($row = $resultado->fetch_assoc()) { ?>
 
             <?php
@@ -127,13 +127,14 @@ if (isset($_GET["categoria"]) && !empty($_GET["categoria"])) {
 
 
     // Consulta para obter os produtos da categoria selecionada
-    $sql1 = "SELECT * FROM Produto WHERE tipo_cod = '$categoria'";
+    $sql1 = "SELECT * FROM produto WHERE tipo_cod = {$categoria}";
+
     $result = $conn->query($sql1);
     // Exibição dos resultados da pesquisa
 ?>
     <section class="container_card">
 
-        <?php if ($result->num_rows > 0) { ?>
+        <?php if ($result) { ?>
             <div class="row text-center">
                 <div class="text">
                     <h4 class="text-center">resultados</h4>
@@ -179,6 +180,7 @@ if (isset($_GET["categoria"]) && !empty($_GET["categoria"])) {
         } else {
 
             echo '<p class="text-center"><h3>Produto não encontrado.</h3></p>';
+          
         }
 
 

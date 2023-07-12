@@ -1,9 +1,13 @@
 <?php
+require_once("./header.inc.php");
 $fundacao = "";
 $deonde = "";
 $cidade = "";
 $data = null;
-require_once("./header.inc.php");
+
+header('Content-type: text/html; charset=utf-8');
+setlocale(LC_ALL, 'pt_BR.utf-8', 'pt_BR', 'Portuguese_Brazil');
+
 if (!isset($_SESSION['login_adm']) || $_SESSION['login_adm'] != true) {
     header("Location: login_adm.php");
 }
@@ -13,7 +17,7 @@ if (isset($_POST['gravar'])) {
         $sql3 = "SELECT * FROM historia;";
         $result3 = $conn->query($sql3);
         $data3 = mysqli_fetch_array($result3);
-        
+
         $fundacao = $_POST['fundacao'];
         $deonde = $_POST['deonde'];
         $cidade = $_POST['cidade'];
@@ -34,7 +38,11 @@ $result1 = $conn->query($sql1);
 
 $data = mysqli_fetch_array($result1);
 
+
+
 mysqli_close($conn);
+
+
 
 ?>
 <div class="col-11 m-auto">
@@ -44,16 +52,16 @@ mysqli_close($conn);
     <form action="" method="post">
         <div class="mb-3">
             <h2><label for="fundacao" class="form-label"><strong>Fundação?</strong></label></h2>
-            <textarea class="form-control" id="fundacao" name="fundacao" rows="3"><?= $data['fundacao'] ?></textarea>
+            <textarea class="form-control" id="fundacao" name="fundacao" rows="3"><?= utf8_encode($data['fundacao']) ?></textarea>
             <br>
             <h2><label for="deonde" class="form-label"><strong>De onde vieram?</strong></label></h2>
-            <textarea class="form-control" id="deonde" name="deonde" rows="3"><?= $data['de_onde_viemos'] ?></textarea>
+            <textarea class="form-control" id="deonde" name="deonde" rows="3"><?= utf8_encode($data['de_onde_viemos']) ?></textarea>
             <br>
             <h2><label for="cidade" class="form-label"><strong>Porque escolheram esta cidade?</strong></label></h2>
-            <textarea class="form-control" id="cidade" name="cidade" rows="3"><?= $data['porque_cidade'] ?></textarea>
+            <textarea class="form-control" id="cidade" name="cidade" rows="3"><?= utf8_encode($data['porque_cidade']) ?></textarea>
             <br>
             <h2><label for="curiosidades" class="form-label"><strong>Curiosidades?</strong></label></h2>
-            <textarea class="form-control" id="curiosidades" name="curiosidades" rows="3"><?= $data['curiosidades'] ?></textarea>
+            <textarea class="form-control" id="curiosidades" name="curiosidades" rows="3"><?= utf8_encode($data['curiosidades']) ?></textarea>
         </div>
         <input type="submit" class="btn btn-outline-success" name="gravar" id="gravar" value="Gravar">
     </form>

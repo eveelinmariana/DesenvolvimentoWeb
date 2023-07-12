@@ -1,60 +1,59 @@
-body {
+
+body{
     font-family: 'Roboto';
     font-size: 0.95rem;
 
 }
 
-section {
-
-    font-family: 'Roboto', 'Calibri';
+section{
+   
+    font-family: 'Roboto','Calibri';
     font-size: 0.9rem;
 }
-
-main {
-
-    width: 99, 999%;
+main{
+   
+    width: 99,999%;
     margin-left: auto;
     margin-right: auto;
 }
-
-nav {}
-
-hr {
-    color: #bea200;
-
+nav{
+  
+  
 }
 
+hr{
+    color: #bea200;
+    
+}
 .centralizar {
 
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-
+   width:100%;
+   margin-left: auto;
+   margin-right: auto;
+   
 }
-
 .demo {
     margin-bottom: 12px;
-
+   
 }
-
-.ajuste-center {
-    width: 99.999%;
-
-    margin-left: auto;
-    margin-right: auto
+.ajuste-center{
+   width: 99.999%;
+  
+  margin-left: auto;
+  margin-right: auto
 }
 
 
 .img_banner {
 
-    max-width: 100%;
-    width: 1920px;
-    height: 600px;
-    margin-bottom: 9px;
-    margin-top: -90px;
-    object-fit: cover;
-
-}
+       max-width: 100%;
+       width: 1920px;
+       height: 600px;
+       margin-bottom: 9px;
+        margin-top: -90px; 
+       object-fit: cover;
+   
+   }
 
 
 
@@ -99,7 +98,7 @@ a .reset_decor:hover {
 
 
 .img_card {
-
+   
     max-height: 180px;
     align-self: center;
     width: 260px;
@@ -196,14 +195,14 @@ a .reset_decor:hover {
 
 .container_card {
     display: flex;
-    width: 1189px;
-
+    width:1189px;
+    
     flex-direction: row;
     flex-wrap: wrap;
     margin-left: auto;
     margin-right: auto;
-    align-items: center;
-    justify-content: start;
+align-items: center;
+   justify-content: start;
 
 
 
@@ -228,14 +227,13 @@ a .reset_decor:hover {
 .text-descr {
     margin-top: 8px;
     height: 50px;
-    text-align: center;
+text-align: center;
     margin-bottom: 5px;
 
 
 }
-
-.text-saiba {
-
+.text-saiba{
+   
     font-size: 0.8rem;
     margin: 0;
     padding: 0;
@@ -276,4 +274,3 @@ a .reset_decor:hover {
     color: #1a0be9;
     font-weight: 400;
 }
-

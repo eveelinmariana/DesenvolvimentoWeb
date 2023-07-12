@@ -15,13 +15,13 @@ $data = mysqli_fetch_array($result);
     <hr>
     <div class="text-justify m-auto">
         <h2>Fundação</h2>
-        <p><?=$data['fundacao']?></p>
+        <p><?=utf8_encode($data['fundacao'])?></p>
         <h2>De onde viemos</h2>
-        <p><?=$data['de_onde_viemos']?></p>
+        <p><?=utf8_encode($data['de_onde_viemos'])?></p>
         <h2>Porque escolhemos esta cidade</h2>
-        <p><?=$data['porque_cidade']?></p>
+        <p><?=utf8_encode($data['porque_cidade'])?></p>
         <h2>Curiosidades</h2>
-        <p><?=$data['curiosidades']?></p>
+        <p><?=utf8_encode($data['curiosidades'])?></p>
     </div>
     <p>Fale conosco: <a href="contato.php"><i class="bi bi-telephone-outbound-fill">Contato</i></a></p>
 </div>

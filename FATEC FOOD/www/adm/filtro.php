@@ -18,7 +18,7 @@ function buscaLike($nome)
 
     $sql = "SELECT count(p.ped_num) pedidos,c.nome,c.cpf,dt_nasc,nickname,c.email,c.whatsapp,c.cli_id ";
     $sql .= "FROM pedido p inner join cliente c on c.cli_id = p.cliente_cli_id  where p.status <> 3 ";
-    $sql .= " and c.email LIKE '%$nome%' ";
+    $sql .= " and c.nome LIKE '%$nome%' ";
     $sql .= "group by c.nome,c.cpf,dt_nasc,c.nickname, c.email,c.whatsapp,c.sexo ,c.cli_id ";
     return $sql;
 }

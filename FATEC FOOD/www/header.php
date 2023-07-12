@@ -15,6 +15,7 @@ if (isset($_GET['limpar'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,7 +74,7 @@ if (isset($_GET['limpar'])) {
                <span style="font-size: 11px;">Vazio (0) &nbsp;</span>
             <?php  }
             ?>
-            <span> <img src="./img/shoppingcart_80945.svg" alt="" width="13px" /></span>
+            <span> <a href="verificar_pedido.php"><img src="./img/shoppingcart_80945.svg" alt="" width="13px" /></a></span>
         </div>
         <ul class="navbar-nav navbar-right" style="margin-right: 100px;">
             <?php

@@ -95,11 +95,11 @@ if (isset($_POST['finalizar'])) {
                     $endcod = 0;
                     // Consulta para obter endereços
                     $sql1 = "SELECT end_cod, bairro,logradouro, numero, cidade,comp ";
-                    $sql1 .= "FROM bd_resto.endereco where cliente_cli_id =" . $_SESSION['id'];
+                    $sql1 .= " FROM endereco where cliente_cli_id ={$_SESSION['id']}";
                     $resultado = $conn->query($sql1);
-
+echo $sql;
                     // Exibição das opções da lista suspensa com as categorias
-                    if ($resultado->num_rows > 0) {
+                    if ($resultado) {
                         while ($rows = $resultado->fetch_assoc()) {
                             $endcod = $rows['end_cod'];
                             $rua = $rows['logradouro'];

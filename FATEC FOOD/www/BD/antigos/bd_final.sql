@@ -118,7 +118,7 @@ CREATE TABLE `historia` (
   `real_id` int NOT NULL AUTO_INCREMENT,
   `fundacao` mediumtext,
   `de_onde_viemos` mediumtext,
-  `porque_cidade` mediumtext,
+  `porque_cidade` varchar(300) DEFAULT NULL,
   `curiosidades` mediumtext,
   PRIMARY KEY (`real_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb3;
@@ -130,7 +130,7 @@ CREATE TABLE `historia` (
 
 LOCK TABLES `historia` WRITE;
 /*!40000 ALTER TABLE `historia` DISABLE KEYS */;
-INSERT INTO `historia` VALUES (40,'Uma família apaixonada por gastronomia fundou o restaurante \"Fatec Food\" em Presidente Prudente - SP. \r\nTransformaram um antigo casarão abandonado em um espaço charmoso. João, o chef talentoso, criava pratos deliciosos,\r\n enquanto Maria, especialista em vinhos, selecionava as melhores opções. Com atendimento impecável e um cardápio\r\n diversificado, o restaurante conquistou a cidade. Tornou-se um ponto de referência, onde pessoas celebram momentos\r\n especiais. O sucesso é resultado da paixão, dedicação e trabalho árduo dessa família. O Fatec Food é um lugar onde a \r\n boa gastronomia encontra aconchego e memórias inesquecíveis são criadas.','João e Maria, irmãos apaixonados por gastronomia,\r\n deixaram sua cidade natal (Maceió - AL) em busca de novas oportunidades. Com suas habilidades culinárias, eles encontraram um\r\n antigo casarão abandonado em Presidente Prudente - SP. Com o apoio dos pais, Dona Ana e Seu Carlos, transformaram o\r\n local no renomado restaurante \"Fatec Food\". Hoje, são referência na cidade, celebrando o sucesso de uma jornada \r\n corajosa e deliciosa.','João e Maria, em busca de um lugar para abrir seu restaurante dos sonhos, descobriram Presidente\r\n Prudente - SP. Encantados com a atmosfera acolhedora e a paixão dos moradores pela gastronomia, escolheram essa cidade \r\n como o local perfeito para compartilhar sua arte culinária. O resto é história de sucesso.','O restaurante \"Fatec Food\" possui \r\n curiosidades encantadoras. Seu cardápio é inspirado em receitas de família, guardando segredos de gerações. Além disso, \r\n o local abriga uma horta própria, onde ingredientes frescos são colhidos diariamente. A decoração é composta por peças \r\n de artesãos locais, trazendo um toque único ao ambiente. É um lugar onde a tradição se mistura com a criatividade culinária.\r\n');
+INSERT INTO `historia` VALUES (40,'gtretert\r\n','tertreter\r\n','ertretert\r\n','eter\r\n');
 /*!40000 ALTER TABLE `historia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,7 +151,7 @@ CREATE TABLE `pagamento` (
   PRIMARY KEY (`pag_id`),
   KEY `pedido_pagamento` (`ped_num`),
   CONSTRAINT `pedido_pagamento` FOREIGN KEY (`ped_num`) REFERENCES `pedido` (`ped_num`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,7 +160,7 @@ CREATE TABLE `pagamento` (
 
 LOCK TABLES `pagamento` WRITE;
 /*!40000 ALTER TABLE `pagamento` DISABLE KEYS */;
-INSERT INTO `pagamento` VALUES (31,'2023-06-20 12:45:06','78976516161',53.60,119,0),(32,'2023-06-20 12:45:35','8989434jajfsa00',42.45,120,0),(33,'2023-06-20 12:46:58','848752544500',29.35,122,0);
+INSERT INTO `pagamento` VALUES (25,'2023-06-19 22:21:45','534534543534454',53.65,110,0),(26,'2023-06-19 22:28:45','8989434jajfsa00',25.80,111,0);
 /*!40000 ALTER TABLE `pagamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,7 +187,7 @@ CREATE TABLE `pedido` (
   CONSTRAINT `fk_pedido_cliente1` FOREIGN KEY (`cliente_cli_id`) REFERENCES `cliente` (`cli_id`),
   CONSTRAINT `fk_pedido_tipo_pagamento1` FOREIGN KEY (`tipo_pagamento_cod`) REFERENCES `tipo_pagamento` (`cod`),
   CONSTRAINT `status_ped_pedido` FOREIGN KEY (`status`) REFERENCES `status_pedido` (`status_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,7 +196,7 @@ CREATE TABLE `pedido` (
 
 LOCK TABLES `pedido` WRITE;
 /*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
-INSERT INTO `pedido` VALUES (119,3,1,'2023-06-20 12:44:59',53.60,38,2),(120,9,1,'2023-06-20 12:45:30',42.45,34,2),(122,4,11,'2023-06-20 12:46:51',29.35,36,2);
+INSERT INTO `pedido` VALUES (110,3,1,'2023-06-19 22:21:38',53.65,34,2),(111,9,1,'2023-06-19 22:28:43',25.80,34,2);
 /*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,7 +261,7 @@ CREATE TABLE `produto_has_pedido` (
 
 LOCK TABLES `produto_has_pedido` WRITE;
 /*!40000 ALTER TABLE `produto_has_pedido` DISABLE KEYS */;
-INSERT INTO `produto_has_pedido` VALUES (7,119,1,4.85,0.15,4.85),(7,122,1,4.85,0.15,4.85),(9,120,1,17.95,0.54,17.95),(10,119,1,24.50,0.49,24.50),(12,120,1,24.50,0.00,24.50),(12,122,1,24.50,0.00,24.50),(15,119,1,24.25,0.73,24.25);
+INSERT INTO `produto_has_pedido` VALUES (6,111,1,20.90,1.05,20.90),(12,110,1,24.50,0.00,24.50),(13,111,1,4.90,0.10,4.90),(14,110,1,4.90,0.00,4.90),(15,110,1,24.25,0.73,24.25);
 /*!40000 ALTER TABLE `produto_has_pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -374,4 +374,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-20 13:22:13
+-- Dump completed on 2023-06-19 22:30:59

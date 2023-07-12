@@ -1,7 +1,7 @@
 <?php
 
 require("./header.php");
-require_once("./utils/connection.php");
+//require_once("./utils/connection.php");
 require_once("./utils/buscarCep.php");
 $cep = "";
 $bairro = "";
@@ -18,9 +18,6 @@ if (isset($_GET['id'])) {
 
     $id = $_GET['id'];
 }
-
-
-
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $cep = $_POST['cep'];
